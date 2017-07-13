@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		我已经受够了各台机器之间资料的不同步,最好的解决方法是svn.
+    	但是svn需要一个public ip.
+    	这就很尴尬了,本少爷没有.
+    	那就另寻出路,使用git.(github的情况码,请尽量不要上传私密资料,soga)
+    	
+    	时隔n个月尝试重新连接我github.
+			$ git clone git@github.com:imshadowurlight/git_demo.git
+			Cloning into 'git_demo'...
+			The authenticity of host 'github.com (192.30.255.112)' can't be established.
+			RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+			Are you sure you want to continue connecting (yes/no)? fatal: Could not read from remote repository.
+			
+			Please make sure you have the correct access rights
+			and the repository exists.
+
+    	
+    	生成新的SSH key 
+    	保存在
+    	--Your identification has been saved in /c/Users/HDXY/.ssh/id_rsa.
+		--Your public key has been saved in /c/Users/HDXY/.ssh/id_rsa.pub.
+		然后我的password是huang058427
+		
+	    	$ ssh-keygen -t rsa -C "knock-knock@eoutlook.com"
+			Generating public/private rsa key pair.
+			Enter file in which to save the key (/c/Users/HDXY/.ssh/id_rsa):
+			Enter passphrase (empty for no passphrase):
+			Enter same passphrase again:
+			Your identification has been saved in /c/Users/HDXY/.ssh/id_rsa.
+			Your public key has been saved in /c/Users/HDXY/.ssh/id_rsa.pub.
+			The key fingerprint is:
+			SHA256:9Bik363tzeBLBz2mSZemh9ZWTkzJ1khjs/WbTh5XvX4 knock-knock@eoutlook.com
+			The key's randomart image is:
+			+---[RSA 2048]----+
+			|        .     = .|
+			|       o     o.*=|
+			|      . o     o+*|
+			|       o = . ..+=|
+			|        S o + B*=|
+			|           + @==o|
+			|          . X =+E|
+			|           = B  .|
+			|            +.o  |
+			+----[SHA256]-----+
+		
+		
+		在github配置SSH key
+			--复制~/.ssh/id_rsa.pub共匙的内容;
+			--找到SSH key配置位置,在settings下面的SSH and GPG keys下面添加ssh共匙
+		
+		在客户端进行连接:
+			ssh -T Git@github.com  		--失败了,防火墙会拒绝 SSH连接(每次都不行)
+			ssh -T -p 443 git@ssh.github.com     --使用克隆过的SSH连接HTTPS端口,成功.
+			
+		在github上创建项目;
+		在本地创建git仓库
+			--我们需要设置username和email，因为github每次commit都会记录他们。
+			git config --global user.name "SamuelBean" 
+			git config --global user.email "knock-knock@outlook.com"
+			
+		cd到你的本地项目、根目录下，再执行git命令
+			cd /d/Repositories/Git/repositorie/git_demo
+		
+		git本地仓库初始化，这个时候可以在我们的项目文件中看到.git文件夹了
+			git init
+			
+		将本地项目的所有文件添加到暂存区中
+			git add .
+		
+		将暂存区的文件提交到git本地仓库
+			git commit -m "comments"
+		
+		将本地仓库关联到Github上，后面的URL地址就是刚刚复制的github上仓库的https地址	
+			git remote add origin  https://github.com/imshadowurlight/git_demo	
+			git remote add origin  https://github.com/imshadowurlight/wsd
+			or
+			git remote add origin  git@github.com:imshadowurlight/wsd.git
+		
+		从远程仓库pull，获取远程仓库的文件到本地仓库（往GitHub上提交东西的时候，会因为远程上有东西更新了但是本地仓库没有更新而造成提交失败，所以我们在push之前，都会pull一遍）
+		就是说commit前先update
+			git pull origin master  		此事,远程项目上的代码已经被拉下来了.更新成功.
+			--allow-unrelated-histories
+			
+		最后一步，将代码由本地仓库上传到Github远程仓库（此处，可能我们会查看当前是否在master，使用命令：git check master）
+			git push -u origin master
+			
+			
+		最后分享一些Github常用的命令：
+			切换分支：git checkout name
+			撤销修改：git checkout -- file
+			删除文件：git rm file
+			查看状态：git status
+			添加记录：git add file 或 git add .
+			添加描述：git commit -m "miao shu nei rong"
+			同步数据：git pull
+			提交数据：git push origin name
+			分支操作
+			查看分支：git branch
+			创建分支：git branch name
+			切换分支：git checkout name
+			创建+切换分支：git checkout -b name
+			合并某分支到当前分支：git merge name
+			删除分支：git branch -d name
+			删除远程分支：git push origin :name	
+		
+		本指南地址:http://www.jianshu.com/p/b81eeb5d7858
+		
+		将远程仓库拷贝一份到本机
+		git clone git@github.com:imshadowurlight/spring-framework.git
+		
+		学习到了http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013743862006503a1c5bf5a783434581661a3cc2084efa000分支管理,
+		剩下的请听下回分解.
+		
+		
+	</body>
+</html>
