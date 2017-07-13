@@ -15,6 +15,9 @@ public interface UserMapper {
 
     int deleteByPrimaryKey(Integer id);
 
+    /**
+     * 插入一条用户记录
+     * */
     int insert(User record);
 
     int insertSelective(User record);

@@ -41,8 +41,12 @@
 		* 映射文件namespace名字必须是接口的全类路径名
 		*　接口的方法名必须和映射Statement的id一致
 	 -->
+	 <!-- mybatis接口代理以及映射的扫描 
+	 		basePackage指定扫描的包的位置,多个包之间使用,/;进行分割
+	 -->
 	 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-	 	<property name="basePackage" value="com.guang.dao"></property>
+	 	<!-- 用户接口代理以及映射 -->
+	 	<property name="basePackage" value="com.guang.dao,com.guang.module.account.dao"></property>
 	 	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	 </bean>
 	
@@ -64,9 +68,18 @@
 	
 	</tx:advice>
 	
+	
+	
+	
 	<!-- 配置拦截service -->
+	<!-- 下面pointcut含义: 
+			pointcut="execution(* com.guang.service.*.*(..))"/>
+							返回值类型 		包名		类名	方法名 	参数名
+							*表示任意值		已写死	* 	* 		..表示任意参数(个数+类型)
+	-->
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.guang.service.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.guang.module.account.service.*.*(..))"/>
 	</aop:config>
 	
 </beans>

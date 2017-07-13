@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guang.module.account.dao.AccountMapper" >
+  
+  <!-- 返回值格式 -->
+  <resultMap id="BaseResultMap" type="com.guang.module.account.po.Account" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <!-- 插入一个账户记录start -->
+  <insert id="insert" parameterType="com.guang.module.account.po.Account" >
+    insert into account (id, name, passwd, email, phone)
+    	values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
+  </insert>
+  <!-- 插入一个账户记录end -->
+  
+  
+  
+</mapper>

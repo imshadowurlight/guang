@@ -102,12 +102,14 @@
   <select id="selectUsers" resultType="com.guang.po.User" >
     select * from user
   </select>
+  
+  <!-- 插入一条用户记录start -->
   <insert id="insert" parameterType="com.guang.po.User" >
-    insert into user (id, username, birthday, 
-      sex, address)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
-      #{sex,jdbcType=CHAR}, #{address,jdbcType=VARCHAR})
+    insert into user (id, username, birthday,sex, address)
+    	values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE},#{sex,jdbcType=CHAR}, #{address,jdbcType=VARCHAR})
   </insert>
+  <!-- 插入一条用户记录end -->
+  
   <insert id="insertSelective" parameterType="com.guang.po.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
