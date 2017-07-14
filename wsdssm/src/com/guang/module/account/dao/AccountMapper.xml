@@ -17,8 +17,10 @@
     insert into account (id, name, passwd, email, phone)
     	values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{passwd,jdbcType=VARCHAR},#{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
   </insert>
-  <!-- 插入一个账户记录end -->
   
   
+  <select id="selectAccounts" resultType="com.guang.module.account.po.Account" >
+    select * from account
+  </select>
   
 </mapper>

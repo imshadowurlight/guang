@@ -1,12 +1,16 @@
 package com.guang.module.account.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.guang.module.account.po.Account;
 import com.guang.module.account.service.AccountService;
+import com.guang.po.User;
 
 /**@author HDXY
  * @version 1.0
@@ -31,9 +35,20 @@ public class AccountController {
 	 * 添加账户
 	 * */
 	@RequestMapping("addAccount")
-	public String addUser(Account account){
+	public String addAccount(Account account){
 		accountService.addAccount(account);
 		return "addAccount";
 	}
+	
+	/**
+	 * 查看账户列表
+	 * */
+	@RequestMapping("accountList")
+	public String  accountList(Model model){
+		List<Account> accounts = accountService.accountList();
+		model.addAttribute("accounts", accounts);
+		return "accountList"; 
+	}
+	
 	
 }

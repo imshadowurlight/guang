@@ -1,5 +1,7 @@
 package com.guang.module.account.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -27,6 +29,12 @@ public class AccountServiceImpl implements AccountService{
 	public void addAccount(Account account) {
 		int result = accountMapper.insert(account);	//result为数据库返回的操作的行数
 		System.out.println(result);
+	}
+
+	@Override
+	public List<Account> accountList() {
+		
+		return accountMapper.selectAccounts();
 	}
 	
 }
