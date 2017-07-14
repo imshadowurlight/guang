@@ -6,8 +6,11 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.guang.module.account.po.Account;
 import com.guang.module.account.service.AccountService;
 import com.guang.po.User;
@@ -22,6 +25,7 @@ public class AccountController {
 	
 	@Resource
 	private AccountService accountService;
+	JSONObject data =new JSONObject();
 	
 	/**
 	 * 访问添加用户页面
@@ -49,6 +53,19 @@ public class AccountController {
 		model.addAttribute("accounts", accounts);
 		return "accountList"; 
 	}
+	
+	
+	/**
+	 * 测试json的交互
+	 * */
+	@RequestMapping("requestJson")
+	public @ResponseBody List<Account> requestJson(@RequestBody Account account){
+		String jsonAccount = JSONObject.toJSONString(account);
+		System.out.println(jsonAccount);
+		List<Account> accounts = accountService.accountList();
+		return accounts;
+	}
+	
 	
 	
 }

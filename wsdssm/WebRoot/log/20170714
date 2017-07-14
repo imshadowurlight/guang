@@ -1,0 +1,43 @@
+============================================================================================================================
+用户界面改版为easyui
+	--前置任务:springmvc返回json,因为easyui操作的都是json;
+		(OK)
+	--引入easyui	
+============================================================================================================================
+springmvc返回json
+	1导包
+	
+	2发起请求,把json格式数据传递到后台
+	$(function(){
+		var new_account = JSON.stringify({"name":"test0714","passwd":"test0714","email":"test0714","phone":"test0714"});
+		$.ajax({
+			type:"post",
+			url:"${pageContext.request.contextPath }/account/requestJson.do",
+			contentType:"application/json;charset=utf-8",
+			dataType:"json",
+			data:new_account,
+			success:function(data){
+				var accountList = JSON.stringify(data);
+				console.log(accountList);
+			}
+		});
+	});
+	
+	3接受json数据,并把json数据返回给前台
+	/**
+	 * 测试json的交互
+	 * */
+	@RequestMapping("requestJson")
+	public @ResponseBody List<Account> requestJson(@RequestBody Account account){
+		String jsonAccount = JSONObject.toJSONString(account);
+		System.out.println(jsonAccount);
+		List<Account> accounts = accountService.accountList();
+		return accounts;
+	}
+
+============================================================================================================================
+引入easyui	
+	
+
+
+============================================================================================================================

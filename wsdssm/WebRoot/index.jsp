@@ -8,16 +8,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
     <title>My JSP 'index.jsp' starting page</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
+	
+	<script type="text/javascript" src="js/easyui/jquery.min.js"></script>
   </head>
   
   <body>
@@ -30,5 +28,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <a href="${pageContext.request.contextPath }/user/userList.do">查看用户列表</a>
     <a href="${pageContext.request.contextPath }/account/addAccountPage.do">跳转至添加账户页面</a>
     <a href="${pageContext.request.contextPath }/account/accountList.do">查看账户列表</a>
+    
+    <script type="text/javascript">
+    	$(function(){
+    		var new_account = JSON.stringify({"name":"test0714","passwd":"test0714","email":"test0714","phone":"test0714"});
+    		$.ajax({
+    			type:"post",
+    			url:"${pageContext.request.contextPath }/account/requestJson.do",
+    			contentType:"application/json;charset=utf-8",
+    			dataType:"json",
+    			data:new_account,
+    			success:function(data){
+    				var accountList = JSON.stringify(data);
+    				console.log(accountList);
+    			}
+    		});
+    	});
+    </script>
+    
+    
   </body>
 </html>
