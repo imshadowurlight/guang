@@ -20,4 +20,14 @@ public interface AccountMapper {
 	 * */
 	List<Account> selectAccounts();
 	
+	/**
+	 * 更新一条账户记录
+	 * */
+	int update(Account account);
+
+	/**
+	 * 删除账户
+	 * */
+	int delete(Account account);
+	
 }

@@ -15,6 +15,16 @@ public interface AccountService {
 	 * */
 	List<Account> accountList();
 	
+	/**
+	 * 更新账户记录
+	 * */
+	void updateAccount(Account account);
+	
+	/**
+	 * 删除账户
+	 * */
+	void deleteAccount(Account account);
+	
 	
 	
 }

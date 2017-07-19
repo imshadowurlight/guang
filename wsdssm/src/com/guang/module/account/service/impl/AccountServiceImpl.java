@@ -36,5 +36,18 @@ public class AccountServiceImpl implements AccountService{
 		
 		return accountMapper.selectAccounts();
 	}
+
+	@Override
+	public void updateAccount(Account account) {
+		int result = accountMapper.update(account);	
+		System.out.println(result);
+	}
+
+	@Override
+	public void deleteAccount(Account account) {
+		int result = accountMapper.delete(account);	
+		System.out.println(result);
+	}
+	
 	
 }

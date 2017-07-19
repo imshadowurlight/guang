@@ -6,6 +6,7 @@ public class Account {
 	private String passwd;	//账户密码
 	private String email;	//认证邮箱
 	private String phone;	//认证手机
+	private String website; //网站名称
 	public Integer getId() {
 		return id;
 	}
@@ -36,18 +37,25 @@ public class Account {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 	public Account() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Account(Integer id, String name, String passwd, String email,
-			String phone) {
+			String phone, String website) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.passwd = passwd;
 		this.email = email;
 		this.phone = phone;
+		this.website = website;
 	}
 	
 	
