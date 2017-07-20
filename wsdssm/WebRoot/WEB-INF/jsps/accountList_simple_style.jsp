@@ -17,15 +17,15 @@
 		
 		<!-- 测试datagrid接收数据 -->
 		<table id="dg" title="My Accounts" style="width:700px;height:250px"
-            toolbar="#toolbar" pagination="true" idField="id"
-            rownumbers="true" fitColumns="true" singleSelect="true">  
+            toolbar="#toolbar" pagination="true" idField="id" data-options="pageSize:20"
+            rownumbers="true" fitColumns="true" singleSelect="true" >  
 	        <thead>  
 	            <tr>  
-	                <th field="website" width="50" editor="{type:'validatebox',options:{required:true}}">website</th>
-	                <th field="name" width="50" editor="{type:'validatebox',options:{required:true}}">Name</th>  
-	                <th field="passwd" width="50" editor="{type:'validatebox',options:{required:true}}">passwd</th>
-	                <th field="phone" width="50" editor="{type:'validatebox',options:{required:true}}">phone</th>
-	                <th field="email" width="50" editor="{type:'validatebox',options:{required:true}}">email</th>  
+	                <th field="website" width="50" editor="{type:'validatebox',options:{required:false}}">website</th>
+	                <th field="name" width="50" editor="{type:'validatebox',options:{required:false}}">Name</th>  
+	                <th field="passwd" width="50" editor="{type:'validatebox',options:{required:false}}">passwd</th>
+	                <th field="phone" width="50" editor="{type:'validatebox',options:{required:false}}">phone</th>
+	                <th field="email" width="50" editor="{type:'validatebox',options:{required:false}}">email</th>  
 	            </tr>  
 	        </thead>  
 	    </table>  
@@ -37,8 +37,12 @@
     </div>
     <script type="text/javascript">
         $(function(){
-            $('#dg').edatagrid({
-                url: "${pageContext.request.contextPath }/account/testDataGrid.do",
+        	
+        	
+        	$('#dg').edatagrid({
+        		
+        		//url: "${pageContext.request.contextPath }/account/testDataGrid.do",
+        		url: "${pageContext.request.contextPath }/account/list.do",
                 saveUrl: "${pageContext.request.contextPath }/account/saveAccount.do",
                 updateUrl: "${pageContext.request.contextPath }/account/updateAccount.do",
                 destroyUrl: "${pageContext.request.contextPath }/account/deleteAccount.do"

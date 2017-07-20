@@ -1,6 +1,7 @@
 package com.guang.module.account.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -36,6 +37,11 @@ public class AccountServiceImpl implements AccountService{
 		
 		return accountMapper.selectAccounts();
 	}
+	
+	@Override
+	public List<Account> accountList(Map map) {
+		return accountMapper.selectAccountsByPagination(map);
+	}
 
 	@Override
 	public void updateAccount(Account account) {
@@ -47,6 +53,11 @@ public class AccountServiceImpl implements AccountService{
 	public void deleteAccount(Account account) {
 		int result = accountMapper.delete(account);	
 		System.out.println(result);
+	}
+
+	@Override
+	public int getAccountsSize() {
+		return accountMapper.getAccountsSize();
 	}
 	
 	
