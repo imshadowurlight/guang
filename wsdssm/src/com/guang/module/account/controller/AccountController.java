@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.guang.beans.PageBean;
 import com.guang.module.account.po.Account;
 import com.guang.module.account.service.AccountService;
 import com.guang.utils.ResponseUtil;
@@ -123,6 +125,7 @@ public class AccountController {
 	/**
 	 * 测试json的交互
 	 * */
+	@Deprecated
 	@RequestMapping("requestJson")
 	public @ResponseBody List<Account> requestJson(@RequestBody Account account){
 		String jsonAccount = JSONObject.toJSONString(account);
@@ -135,6 +138,7 @@ public class AccountController {
 	/**
 	 * 测试datagrid获取数据
 	 * */
+	@Deprecated
 	@SuppressWarnings({ })
 	@RequestMapping("testDataGrid")
 	public @ResponseBody JSONObject testDataGrid(){
@@ -163,13 +167,14 @@ public class AccountController {
 	@RequestMapping("list")
 	public String list(@RequestParam(value = "page", required = false) String page, @RequestParam(value = "rows", required = false) String rows,
             HttpServletResponse response) throws Exception{
-		System.out.println(page);
-		System.out.println(rows);
 		//竟然还是拿到数据了,但是他封装得我根本看不懂这个第一页是怎么传过来的,阿西~
 		//根据页码+单页数据量取数据
 		Map map = new HashMap();
-		map.put("start", Integer.parseInt(page));
-		map.put("size", Integer.parseInt(rows));
+		if(!StringUtils.isBlank(page) && !StringUtils.isBlank(rows)){
+			PageBean pageBean = new PageBean(Integer.parseInt(page), Integer.parseInt(rows));
+			map.put("start", pageBean.getStart());
+			map.put("size", pageBean.getPageSize());
+		}
 		List<Account> accounts = accountService.accountList(map);	//获取账户数据集
 		int total = accountService.getAccountsSize();				//获取账户数量
 		//按格式封装数据
