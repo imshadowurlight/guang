@@ -73,6 +73,7 @@ public class AccountController {
 	/**
 	 * datagrid更新账户
 	 * */
+	@Deprecated
 	@RequestMapping("updateAccount")
 	public @ResponseBody JSONObject updateAccount(Account account){
 		try {

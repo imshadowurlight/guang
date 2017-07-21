@@ -15,10 +15,11 @@
 	</head>
 	<body>
 		
-		<!-- 测试datagrid接收数据 -->
-		<table id="dg" title="My Accounts" style="width:700px;height:250px"
-            toolbar="#toolbar" pagination="true" idField="id" data-options="pageSize:20"
-            rownumbers="true" fitColumns="true" singleSelect="true" >  
+		<table id="dg" title="My Accounts" style="width:100%;height:750px;"
+            toolbar="#toolbar" pagination="true" idField="id" rownumbers="true" fitColumns="true" singleSelect="true" data-options="
+            	pageSize:20,
+            	striped:true
+            ">  
 	        <thead>  
 	            <tr>  
 	                <th field="website" width="50" editor="{type:'validatebox',options:{required:false}}">website</th>
@@ -34,21 +35,21 @@
 	        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">Destroy</a>
 	        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">Save</a>
 	        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">Cancel</a>
-	        
 	        <!-- 根据条件查询账号 
 	        	event.keyCode==13 表示enter触发事件
 	        	enter键的ASCII是13
 	        -->
-	        &nbsp;书架编号：&nbsp;<input type="text" id="website_name" size="20" onkeydown="if(event.keyCode==13) doSearch()"/>
-	        &nbsp;<a href="javascript:doSearch()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
-	        
-	        
+	        <span style="float: right;">	
+	        website：<input type="text" id="website_name" size="20" onkeydown="if(event.keyCode==13) doSearch()"/>
+	        <a href="javascript:doSearch()" class="easyui-linkbutton" iconCls="icon-search" plain="true">search</a>
+	        </span>
 	    </div>
 	    <script type="text/javascript">
 		    function doSearch() {
 	    		//调用了 'load' 方法来加载新的数据网格（datagrid）数据
 	            $("#dg").datagrid('load', {
 	                "website": $("#website_name").val()
+	                
 	            });
 	        }
 	    </script>
@@ -63,8 +64,6 @@
 	                destroyUrl: "${pageContext.request.contextPath }/account/deleteAccount.do"
 	            });
 	        });
-	        
-	       
 	    </script>
 	</body>
 </html>

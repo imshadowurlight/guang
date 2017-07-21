@@ -1,6 +1,7 @@
 package com.guang.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -24,6 +25,21 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public List<User> userList() {
 		return userMapper.selectUsers();
+	}
+
+	@Override
+	public List<User> userList(Map map) {
+		return userMapper.userList(map);
+	}
+
+	@Override
+	public int getUsersSize(Map map) {
+		return userMapper.getUsersSize(map);
+	}
+
+	@Override
+	public void deleteUser(User user) {
+		userMapper.deleteUser(user);
 	}
 	
 	

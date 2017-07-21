@@ -16,6 +16,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	
 	<script type="text/javascript" src="js/easyui/jquery.min.js"></script>
+	<style type="text/css">
+		li{
+			list-style:none;
+		}
+	</style>
+	
   </head>
   
   <body>
@@ -24,11 +30,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     welcome to my ssm project home ,
     i am your greatest master guang.
     
-    <a href="${pageContext.request.contextPath }/user/addUserPage.do">跳转至添加用户页面</a>
-    <a href="${pageContext.request.contextPath }/user/userList.do">查看用户列表</a>
-    <%-- <a href="${pageContext.request.contextPath }/account/addAccountPage.do">跳转至添加账户页面</a> --%>
-    <a href="${pageContext.request.contextPath }/account/accountList.do">查看账户列表</a>
-    <a href="${pageContext.request.contextPath }/account/accountList_simple_style.do">查看账户列表_简单_样式</a>
+    
+    
+    <ul>
+    	<li><a href="${pageContext.request.contextPath }/user/addUserPage.do">跳转至添加用户页面</a></li>
+    	<li><a href="${pageContext.request.contextPath }/user/userList.do">查看用户列表</a></li>
+    	<li><a href="${pageContext.request.contextPath }/account/addAccountPage.do">跳转至添加账户页面</a></li>
+    	<li><a href="${pageContext.request.contextPath }/account/accountList.do">查看账户列表</a></li>
+    	<li><a href="${pageContext.request.contextPath }/account/accountList_simple_style.do">查看账户列表_简单_样式</a></li>
+    	<li><a href="${pageContext.request.contextPath }/main.jsp">main</a></li>
+    </ul>
+    
+    
     
     <script type="text/javascript">
     	$(function(){
