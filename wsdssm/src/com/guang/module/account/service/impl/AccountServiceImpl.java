@@ -56,8 +56,8 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public int getAccountsSize() {
-		return accountMapper.getAccountsSize();
+	public int getAccountsSize(Map map) {
+		return accountMapper.getAccountsSize(map);
 	}
 	
 	

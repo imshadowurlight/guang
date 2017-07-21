@@ -32,14 +32,24 @@
   
   <select id="selectAccountsByPagination" parameterType="Map" resultType="com.guang.module.account.po.Account" >
   	select * from account
+  	<where>
+        <if test="website!=null and website!='' ">
+            and website like CONCAT('%',#{website},'%')
+        </if>
+    </where>
   	<if test="start!=null and size!=null">
     	limit #{start},#{size}
    	</if>
   </select>
   
   
-  <select id="getAccountsSize" resultType="Integer" >
+  <select id="getAccountsSize" parameterType="Map" resultType="Integer" >
     select count(*) from account
+    <where>
+        <if test="website!=null and website!='' ">
+            and website like CONCAT('%',#{website},'%')
+        </if>
+    </where>
   </select>
   
   <update id="update" parameterType="com.guang.module.account.po.Account" flushCache="true" statementType="PREPARED" timeout="20">

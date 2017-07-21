@@ -30,26 +30,41 @@
 	        </thead>  
 	    </table>  
 	    <div id="toolbar">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('addRow')">New</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">Destroy</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">Save</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">Cancel</a>
-    </div>
-    <script type="text/javascript">
-        $(function(){
-        	
-        	
-        	$('#dg').edatagrid({
-        		
-        		//url: "${pageContext.request.contextPath }/account/testDataGrid.do",
-        		url: "${pageContext.request.contextPath }/account/list.do",
-                saveUrl: "${pageContext.request.contextPath }/account/saveAccount.do",
-                updateUrl: "${pageContext.request.contextPath }/account/updateAccount.do",
-                destroyUrl: "${pageContext.request.contextPath }/account/deleteAccount.do"
-            });
-        });
-        
-       
-    </script>
+	        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('addRow')">New</a>
+	        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">Destroy</a>
+	        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">Save</a>
+	        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">Cancel</a>
+	        
+	        <!-- 根据条件查询账号 
+	        	event.keyCode==13 表示enter触发事件
+	        	enter键的ASCII是13
+	        -->
+	        &nbsp;书架编号：&nbsp;<input type="text" id="website_name" size="20" onkeydown="if(event.keyCode==13) doSearch()"/>
+	        &nbsp;<a href="javascript:doSearch()" class="easyui-linkbutton" iconCls="icon-search" plain="true">搜索</a>
+	        
+	        
+	    </div>
+	    <script type="text/javascript">
+		    function doSearch() {
+	    		//调用了 'load' 方法来加载新的数据网格（datagrid）数据
+	            $("#dg").datagrid('load', {
+	                "website": $("#website_name").val()
+	            });
+	        }
+	    </script>
+	    
+	    <script type="text/javascript">
+	        $(function(){
+	        	$('#dg').edatagrid({
+	        		//url: "${pageContext.request.contextPath }/account/testDataGrid.do",
+	        		url: "${pageContext.request.contextPath }/account/list.do",
+	                saveUrl: "${pageContext.request.contextPath }/account/saveAccount.do",
+	                updateUrl: "${pageContext.request.contextPath }/account/updateAccount.do",
+	                destroyUrl: "${pageContext.request.contextPath }/account/deleteAccount.do"
+	            });
+	        });
+	        
+	       
+	    </script>
 	</body>
 </html>

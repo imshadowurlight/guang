@@ -39,7 +39,7 @@ public interface AccountMapper {
 	/**
 	 * 查询账户集合总记录数
 	 * */
-	int getAccountsSize();
+	int getAccountsSize(Map map);
 
 	
 	

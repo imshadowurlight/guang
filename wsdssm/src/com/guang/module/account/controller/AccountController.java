@@ -161,12 +161,15 @@ public class AccountController {
 	/**
 	 * @param page  页码
 	 * @param rows 单页数据量
+	 * @param account
+	 * @param response
 	 * @throws Exception 
 	 * */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping("list")
-	public String list(@RequestParam(value = "page", required = false) String page, @RequestParam(value = "rows", required = false) String rows,
-            HttpServletResponse response) throws Exception{
+	public String list(@RequestParam(value = "page", required = false) String page, 
+			@RequestParam(value = "rows", required = false) String rows,
+			Account account,HttpServletResponse response) throws Exception{
 		//竟然还是拿到数据了,但是他封装得我根本看不懂这个第一页是怎么传过来的,阿西~
 		//根据页码+单页数据量取数据
 		Map map = new HashMap();
@@ -175,8 +178,14 @@ public class AccountController {
 			map.put("start", pageBean.getStart());
 			map.put("size", pageBean.getPageSize());
 		}
+		if(!StringUtils.isBlank(account.getWebsite())){
+			map.put("website", account.getWebsite());
+		}else{
+			map.put("website", "");
+		}
 		List<Account> accounts = accountService.accountList(map);	//获取账户数据集
-		int total = accountService.getAccountsSize();				//获取账户数量
+		//int total = accounts.size();	直接从这里取是不对的,因为这里规定了获取的数量
+		int total = accountService.getAccountsSize(map);				//获取账户数量
 		//按格式封装数据
 		JSONArray jsonAccounts = JSONArray.fromObject(accounts);
 		data.put("total", total);
