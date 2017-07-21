@@ -33,11 +33,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     
     <ul>
-    	<li><a href="${pageContext.request.contextPath }/user/addUserPage.do">跳转至添加用户页面</a></li>
-    	<li><a href="${pageContext.request.contextPath }/user/userList.do">查看用户列表</a></li>
-    	<li><a href="${pageContext.request.contextPath }/account/addAccountPage.do">跳转至添加账户页面</a></li>
-    	<li><a href="${pageContext.request.contextPath }/account/accountList.do">查看账户列表</a></li>
-    	<li><a href="${pageContext.request.contextPath }/account/accountList_simple_style.do">查看账户列表_简单_样式</a></li>
     	<li><a href="${pageContext.request.contextPath }/main.jsp">main</a></li>
     </ul>
     

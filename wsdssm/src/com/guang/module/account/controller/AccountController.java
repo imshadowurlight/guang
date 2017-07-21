@@ -36,24 +36,6 @@ public class AccountController {
 	private AccountService accountService;
 	JSONObject data =new JSONObject();
 	
-	/**
-	 * 访问添加用户页面
-	 * */
-	@Deprecated
-	@RequestMapping("addAccountPage")
-	public String addAccountPage(){
-		return "addAccount"; 
-	}
-	
-	/**
-	 * 添加账户
-	 * */
-	@Deprecated
-	@RequestMapping("addAccount")
-	public String addAccount(Account account){
-		accountService.addAccount(account);
-		return "addAccount";
-	}
 	
 	/**
 	 * datagrid添加账户

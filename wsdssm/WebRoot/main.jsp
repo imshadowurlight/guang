@@ -61,8 +61,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    <table width="100%">
 	        <tr>
 	            <td width="50%"></td>
-	            <td valign="bottom" style="font-size: 20px;color:#8B8B8B;font-family: '楷体';" align="right" width="50%"><font size="3">
-	            	welcome to wsdssm.
+	            <td valign="bottom" style="font-size: 50px;color:#8B8B8B;font-family: '楷体';"  width="50%">
+	            	welcome 
 	            </td>
 	        </tr>
 	    </table>

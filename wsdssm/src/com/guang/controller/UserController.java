@@ -37,33 +37,12 @@ public class UserController {
 	private UserService userService;
 	JSONObject data =new JSONObject();
 	
-	/**
-	 * 访问添加用户页面
-	 * */
-	@Deprecated
-	@RequestMapping("addUserPage")
-	public String addUserPage(){
-		return "addUser"; //
-	}
-	
-	
-	/**
-	 * 添加一个用户
-	 * */
-	@Deprecated
-	@RequestMapping("addUser")
-	public String addUser(User user){
-		userService.addUser(user);//
-		return "addUser"; //
-	}
 	
 	/**
 	 * 跳转用户列表页面
 	 * */
 	@RequestMapping("userList")
 	public String userList(Model model){
-		//List<User> users = userService.userList();
-		//model.addAttribute("users", users);
 		return "userList"; 
 	}
 	
