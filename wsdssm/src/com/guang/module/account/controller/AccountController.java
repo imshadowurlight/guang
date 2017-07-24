@@ -139,6 +139,7 @@ public class AccountController {
         map.put("rows", jsonAccounts);
         //转换为datagrid格式的结果集
         data = (JSONObject) JSONObject.toJSON(map);
+        log.info("request: account/testDataGrid ,  param:null,result " + data.toString());
 		return data;
 	}
 	
@@ -156,9 +157,6 @@ public class AccountController {
 			Account account,HttpServletResponse response) throws Exception{
 		//竟然还是拿到数据了,但是他封装得我根本看不懂这个第一页是怎么传过来的,阿西~
 		//根据页码+单页数据量取数据
-		
-		log.info("查询账户信息");
-		log.error("有人恶意查询账户信息");//奇怪了,怎么不是输出到文件呢
 		Map map = new HashMap();
 		if(!StringUtils.isBlank(page) && !StringUtils.isBlank(rows)){
 			PageBean pageBean = new PageBean(Integer.parseInt(page), Integer.parseInt(rows));
@@ -178,6 +176,7 @@ public class AccountController {
 		data.put("total", total);
 		data.put("rows", jsonAccounts);
 		ResponseUtil.write(response, data);
+		log.info("request: account/list ,  map: " + map.toString());
 		return null;
 	}
 	
