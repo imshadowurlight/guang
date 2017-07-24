@@ -46,7 +46,7 @@
 	 -->
 	 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 	 	<!-- 用户接口代理以及映射 -->
-	 	<property name="basePackage" value="com.guang.dao,com.guang.module.account.dao"></property>
+	 	<property name="basePackage" value="com.guang.dao,com.guang.module.account.dao,com.guang.module.user.dao"></property>
 	 	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	 </bean>
 	
@@ -80,6 +80,7 @@
 	<aop:config>
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.guang.service.*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.guang.module.account.service.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.guang.module.user.service.*.*(..))"/>
 	</aop:config>
 	
 </beans>

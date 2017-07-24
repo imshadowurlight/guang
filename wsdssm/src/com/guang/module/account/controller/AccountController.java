@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,7 +36,7 @@ public class AccountController {
 	@Resource
 	private AccountService accountService;
 	JSONObject data =new JSONObject();
-	
+	static Logger log = Logger.getLogger(AccountController.class);
 	
 	/**
 	 * datagrid添加账户
@@ -155,6 +156,9 @@ public class AccountController {
 			Account account,HttpServletResponse response) throws Exception{
 		//竟然还是拿到数据了,但是他封装得我根本看不懂这个第一页是怎么传过来的,阿西~
 		//根据页码+单页数据量取数据
+		
+		log.info("查询账户信息");
+		log.error("有人恶意查询账户信息");//奇怪了,怎么不是输出到文件呢
 		Map map = new HashMap();
 		if(!StringUtils.isBlank(page) && !StringUtils.isBlank(rows)){
 			PageBean pageBean = new PageBean(Integer.parseInt(page), Integer.parseInt(rows));
