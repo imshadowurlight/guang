@@ -87,6 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        </div>
 	        <div title="网站账户管理" style="padding:10px">
 	            <a href="javascript:openTab('网站账户','${pageContext.request.contextPath }/account/accountList_simple_style.do','icon-shuben')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-shuben'" style="width: 150px;">网站账户管理</a>
+	            <a href="javascript:openTab('单词','${pageContext.request.contextPath }/word/wordList.do','icon-shuben')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-shuben'" style="width: 150px;">单词管理</a>
 	        </div>
 	        <div title="xxx" style="padding:10px;border:none;">
 	            <a href="javascript:openTab(' 管理员列表','userManage.jsp','icon-lxr')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-lxr'" style="width: 150px;">敬请期待</a>

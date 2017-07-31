@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guang.module.account.dao.AccountMapper" >
+  
+  <!-- 返回值格式 -->
+  <resultMap id="BaseResultMap" type="com.guang.module.account.po.Account" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="website" property="website" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <!-- 插入一个账户记录start -->
+  <insert id="insert" parameterType="com.guang.module.account.po.Account" >
+    insert into account (id, name, passwd, email, phone, website)
+    	values (#{id,jdbcType=INTEGER}, 
+    		#{name,jdbcType=VARCHAR}, 
+    		#{passwd,jdbcType=VARCHAR},
+    		#{email,jdbcType=VARCHAR}, 
+    		#{phone,jdbcType=VARCHAR}, 
+    		#{website,jdbcType=VARCHAR})
+  </insert>
+  
+  
+  <select id="selectAccounts" resultType="com.guang.module.account.po.Account" >
+    select * from account
+  </select>
+  
+  
+  <select id="selectAccountsByPagination" parameterType="Map" resultType="com.guang.module.account.po.Account" >
+  	select * from account
+  	<where>
+        <if test="website!=null and website!='' ">
+            and website like CONCAT('%',#{website},'%')
+        </if>
+    </where>
+  	<if test="start!=null and size!=null">
+    	limit #{start},#{size}
+   	</if>
+  </select>
+  
+  
+  <select id="getAccountsSize" parameterType="Map" resultType="Integer" >
+    select count(*) from account
+    <where>
+        <if test="website!=null and website!='' ">
+            and website like CONCAT('%',#{website},'%')
+        </if>
+    </where>
+  </select>
+  
+  <update id="update" parameterType="com.guang.module.account.po.Account" flushCache="true" statementType="PREPARED" timeout="20">
+  	update account 
+  		set name = #{name,jdbcType=VARCHAR},
+  		passwd = #{passwd,jdbcType=VARCHAR},
+  		email = #{email,jdbcType=VARCHAR}, 
+  		phone = #{phone,jdbcType=VARCHAR},
+  		website = #{website,jdbcType=VARCHAR}
+  	where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <delete id="delete" parameterType="com.guang.module.account.po.Account" flushCache="true" statementType="PREPARED" timeout="20">
+  	delete from account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+</mapper>

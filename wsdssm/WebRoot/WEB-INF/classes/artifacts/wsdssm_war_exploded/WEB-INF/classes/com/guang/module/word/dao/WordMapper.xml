@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guang.module.word.dao.WordMapper" >
+  
+  <!-- 返回值格式 -->
+  <resultMap id="BaseResultMap" type="com.guang.module.word.po.Word" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="enword" property="enword" jdbcType="VARCHAR" />
+    <result column="zhword" property="zhword" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  
+  <insert id="insertWord" parameterType="com.guang.module.word.po.Word" >
+    insert into word (id, enword, zhword, status, time)
+    	values (#{id,jdbcType=INTEGER}, 
+    		#{enword,jdbcType=VARCHAR}, 
+    		#{zhword,jdbcType=VARCHAR},
+    		#{status,jdbcType=INTEGER}, 
+    		#{time,jdbcType=VARCHAR})
+  </insert>
+  
+  
+  <select id="getWords" parameterType="Map" resultType="com.guang.module.word.po.Word" >
+    select * from word
+  	<if test="start!=null and size!=null">
+    	limit #{start},#{size}
+   	</if>
+  </select>
+  
+  <select id="getWordsSize" parameterType="Map" resultType="Integer" >
+    select count(*) from word
+  </select>
+  
+  <update id="updateWord" parameterType="com.guang.module.word.po.Word" flushCache="true" statementType="PREPARED" timeout="20">
+  	update word 
+  		set enword = #{enword,jdbcType=VARCHAR},
+  		zhword = #{zhword,jdbcType=VARCHAR},
+  		status = #{status,jdbcType=INTEGER}, 
+  		time = #{time,jdbcType=VARCHAR}
+  	where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="deleteWord" parameterType="com.guang.module.word.po.Word" flushCache="true" statementType="PREPARED" timeout="20">
+    delete from word 
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>
